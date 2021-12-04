@@ -1,28 +1,28 @@
-#include<unordered_map>//ÔÚunordered_mapÖ®Ç°¼ÓÉÏtr1¿âÃû£¬
-using namespace std;//Óë´ËÍ¬Ê±ĞèÒª¼ÓÉÏÃüÃû¿Õ¼ä
+#include<unordered_map>//åœ¨unordered_mapä¹‹å‰åŠ ä¸Štr1åº“åï¼Œ
+using namespace std;//ä¸æ­¤åŒæ—¶éœ€è¦åŠ ä¸Šå‘½åç©ºé—´
 
 /*
-ÀûÓÃË«ÏòÁ´±í¼°¹şÏ£±í½øĞĞ½âÌâ
+åˆ©ç”¨åŒå‘é“¾è¡¨åŠå“ˆå¸Œè¡¨è¿›è¡Œè§£é¢˜
 */
-// ´´½¨Ë«ÏòÁ´±í½Úµã
+// åˆ›å»ºåŒå‘é“¾è¡¨èŠ‚ç‚¹
 struct DlinkedNode
 {
     int key, value;
     DlinkedNode* prev;
     DlinkedNode* next;
-    // ¹¹Ôìº¯Êı
+    // æ„é€ å‡½æ•°
     DlinkedNode() :key(0), value(0), prev(nullptr), next(nullptr) {}
     DlinkedNode(int _key, int _value) :key(_key), value(_value), prev(nullptr), next(nullptr) {}
 };
 class LRUCache {
 public:
-    LRUCache(int capacity) // ¹¹Ôìº¯Êı
+    LRUCache(int capacity) // æ„é€ å‡½æ•°
     {
         this->capacity = capacity;
         this->size = 0;
         this->head = new DlinkedNode();
         this->tail = new DlinkedNode();
-        head->next = tail; // Í·½áµãÓëÎ²½áµãÏàÁ¬½Ó
+        head->next = tail; // å¤´ç»“ç‚¹ä¸å°¾ç»“ç‚¹ç›¸è¿æ¥
         tail->prev = head;
     }
 
@@ -41,13 +41,13 @@ public:
 
     void put(int key, int value)
     {
-        if (!cache.count(key)) // ¹Ø¼ü×Ö½Úµã²»´æÔÚ
+        if (!cache.count(key)) // å…³é”®å­—èŠ‚ç‚¹ä¸å­˜åœ¨
         {
             DlinkedNode* node = new DlinkedNode(key, value);
             cache.insert(pair<int, DlinkedNode*>(key, node));
             addNewnode(node);
         }
-        else // ¹Ø¼ü×Ö½Úµã´æÔÚ
+        else // å…³é”®å­—èŠ‚ç‚¹å­˜åœ¨
         {
             DlinkedNode* node = new DlinkedNode(key, value);
             node->prev = cache[key]->prev;
@@ -58,10 +58,10 @@ public:
     }
     void move2head(DlinkedNode* node)
     {
-        // ½«½Úµã´ÓË«ÏòÁ´±íÖĞÈ¡³ö
+        // å°†èŠ‚ç‚¹ä»åŒå‘é“¾è¡¨ä¸­å–å‡º
         node->prev->next = node->next;
         node->next->prev = node->prev;
-        // ½«½Úµã²åÈëµ½Ë«ÏòÁ´±íheadÓëhead->nextÖ®¼ä
+        // å°†èŠ‚ç‚¹æ’å…¥åˆ°åŒå‘é“¾è¡¨headä¸head->nextä¹‹é—´
         node->next = head->next;
         node->prev = head;
         head->next->prev = node;
@@ -70,21 +70,21 @@ public:
     void addNewnode(DlinkedNode* node)
     {
         // DlinkedNode* tmp = new DlinkedNode();
-        // ½«½Úµã²åÈëµ½Ë«ÏòÁ´±íheadÓëhead->nextÖ®¼ä
+        // å°†èŠ‚ç‚¹æ’å…¥åˆ°åŒå‘é“¾è¡¨headä¸head->nextä¹‹é—´
         node->next = head->next;
         node->prev = head;
         head->next->prev = node;
         head->next = node;
         this->size++;
-        if (size > capacity) // Èç¹û²åÈë½Úµã×Ü½ÚµãÊı´óÓÚÈİÁ¿£¬É¾³ıÎ²½áµã
+        if (size > capacity) // å¦‚æœæ’å…¥èŠ‚ç‚¹æ€»èŠ‚ç‚¹æ•°å¤§äºå®¹é‡ï¼Œåˆ é™¤å°¾ç»“ç‚¹
         {
             // tmp = tail->prev;
             // tmp->prev->next = tail;
             // tail->prev = tmp->prev;
             // std::cout << tmp->key << endl;
             // cache.erase(tmp->key);
-            // delete tmp; // ±ÜÃâÄÚ´æĞ¹Â©
-            // ¸Ä±äÎ²½áµãÖ¸Ïò
+            // delete tmp; // é¿å…å†…å­˜æ³„æ¼
+            // æ”¹å˜å°¾ç»“ç‚¹æŒ‡å‘
             tail->prev->prev->next = tail;
             cache.erase(tail->prev->key);
             tail->prev = tail->prev->prev;
@@ -93,8 +93,8 @@ public:
     }
 private:
     unordered_map<int, DlinkedNode*> cache;
-    DlinkedNode* head; // Ë«ÏòÁ´±íÍ·½áµã
-    DlinkedNode* tail; // Ë«ÏòÁ´±íÎ²½áµã
+    DlinkedNode* head; // åŒå‘é“¾è¡¨å¤´ç»“ç‚¹
+    DlinkedNode* tail; // åŒå‘é“¾è¡¨å°¾ç»“ç‚¹
     int size;
     int capacity;
 };
