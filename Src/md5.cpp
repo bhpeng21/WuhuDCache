@@ -9,6 +9,11 @@
  */
 
 #include "md5.h"
+//#include <cstdlib>
+//#include <string>
+//#include <iostream>
+
+using namespace std;
 
 /* Define the static member of MD5. */
 const byte MD5::PADDING[64] = { 0x80 };
@@ -270,3 +275,36 @@ string MD5::toStr() {
   }
   return str;
 }
+
+string MD5::cutStr() {
+	string str;
+	str = this->toStr().substr(28,4);
+	return str;
+}
+
+int MD5::s2i() {
+	int num;
+	num = stoi(this->cutStr(), 0, 16);
+	return num;
+}
+
+
+//test
+//int main()
+//{
+//	string s;
+//	cin >> s;
+//	cout << s << endl;
+//	
+//	cout << MD5(s).toStr() << endl;
+//	string s1 = MD5(s).toStr().substr(28, 4);
+//	cout << s1 << endl;
+//	int i = stoi(s1, 0, 16);
+//	cout << i % 16384 << endl;
+//	cout << MD5(s).cutStr() << endl;
+//	cout << MD5(s).s2i() << endl;
+//	cout << MD5(s).s2i() % 16384 << endl;
+//
+//	system("pause");
+//	return 0;
+//}
