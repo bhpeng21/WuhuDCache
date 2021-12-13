@@ -1,7 +1,7 @@
 #include "wuhuDc.h"
 
 //test
-#include "md5.h"
+// #include "md5.h"
 
 //默认构造函数
 wuhuDc::wuhuDc() = default;
@@ -64,10 +64,10 @@ int wuhuDc::isAlive()
 }
 
 //test
-int main()
-{
-	cout << "wuhuqifi" << endl;
+// int main()
+// {
+// 	cout << "wuhuqifi" << endl;
 	
-	system("pause");
-	return 0;
-}
+// 	system("pause");
+// 	return 0;
+// }
