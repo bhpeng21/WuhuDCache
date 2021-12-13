@@ -6,7 +6,7 @@
 #include <ctime>
 #include <string>
 //test-----wuhudc头文件和源文件中的string写成string
-#include <iostream>
+// #include <iostream>
 
 using namespace std;
 
