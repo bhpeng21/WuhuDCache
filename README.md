@@ -1,3 +1,4 @@
-## 简单分布式缓存系统
-using c++ as the main coding language.
+# 简单分布式缓存系统
+We use C++ as the main coding langugae!
+
 
