@@ -98,11 +98,15 @@ public:
   /* Convert digest to string value */
   string toStr();
 
-  //µÃµ½md5ÖµµÄºó8Î»×Ö·û´®
+  //å¾—åˆ°md5å€¼çš„å8ä½å­—ç¬¦ä¸²
   string cutStr();
 
-  //½«×Ö·û´®×ª»»ÎªÊı×Ö
+  //å°†å­—ç¬¦ä¸²è½¬æ¢ä¸ºæ•°å­—
   int s2i();
+
+  //å¾—åˆ°keyå¯¹åº”çš„å“ˆå¸Œå€¼
+  int getHashval();
+
 
 private:
   /* Initialization the md5 object, processing another message block,

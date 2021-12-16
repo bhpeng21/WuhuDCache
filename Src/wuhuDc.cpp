@@ -7,14 +7,19 @@
 wuhuDc::wuhuDc() = default;
 
 //ip和sockfd初始化
-wuhuDc::wuhuDc(string ip, int sockfd): ip(ip), sockfd(sockfd)
+wuhuDc::wuhuDc(const string &ip, long long timeval)
 {
-    expireTime = time(0) + heartbeatLen;
+	this->ip = ip;
+	string trans = ip.substr(ip.length()-4, ip.length());
+    port = stoi(trans);
+    expireTime= timeval + heartbeatLen;
 }
 
 //ip、socket和heartbeatLen初始化
-wuhuDc::wuhuDc(string ip, int sockfd, int heartbeatLen): ip(ip), sockfd(sockfd) , heartbeatLen(heartbeatLen)
+wuhuDc::wuhuDc(string ip, int heartbeatLen): ip(ip), heartbeatLen(heartbeatLen)
 {
+    string trans = ip.substr(ip.length()-4, ip.length());
+    this->port = stoi(trans);
     expireTime = time(0) + heartbeatLen;
 }
 
@@ -32,6 +37,17 @@ void wuhuDc::indexAdd(string key)
 		this->indexTable.insert(kv);
         return;
     }
+    return;
+}
+
+//删除key，slot对————扩容/缩容操作
+void wuhuDc::deleteIndex()
+{}
+
+//转移key，slot对————扩容/缩容操作
+void wuhuDc::moveIndex(pair<string, int> kv)
+{
+    indexTable.insert(kv);
     return;
 }
 
@@ -61,6 +77,12 @@ int wuhuDc::isAlive()
     }
     survival = 0;
     return 0;
+}
+
+//返回cache server的ip
+string wuhuDc::getip()
+{
+	return ip;
 }
 
 //test

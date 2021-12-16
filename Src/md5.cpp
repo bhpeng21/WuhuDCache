@@ -12,6 +12,7 @@
 //#include <cstdlib>
 //#include <string>
 //#include <iostream>
+#include "wuhuServer.h"
 
 using namespace std;
 
@@ -287,6 +288,13 @@ int MD5::s2i() {
 	num = stoi(this->cutStr(), 0, 16);
 	return num;
 }
+
+//求key对应的hashval
+int MD5::getHashval()
+  {
+    int hashval = s2i() % numslots;
+    return hashval; 
+  }
 
 
 //test
